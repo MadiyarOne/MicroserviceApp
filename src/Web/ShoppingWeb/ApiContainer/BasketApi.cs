@@ -9,19 +9,22 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ShoppingWeb.ApiContainer
 {
+    [Authorize]
     public class BasketApi : BaseHttpClientWithFactory, IBasketApi
     {
         private readonly IApiSettings _settings;
-
+        
         public BasketApi(IHttpClientFactory factory, IApiSettings settings)
             : base(factory)
         {
             _settings = settings;
         }
-
+        [ValidateAntiForgeryToken]
         public async Task<Basket> GetBasket(string userName)
         {
             var message = new HttpRequestBuilder(_settings.BaseAddress)
@@ -32,7 +35,7 @@ namespace ShoppingWeb.ApiContainer
 
             return await SendRequest<Basket>(message);
         }
-
+        [ValidateAntiForgeryToken]
         public async Task<Basket> UpdateBasket(Basket model)
         {
             var message = new HttpRequestBuilder(_settings.BaseAddress)
@@ -45,7 +48,7 @@ namespace ShoppingWeb.ApiContainer
 
             return await SendRequest<Basket>(message);
         }
-
+        [ValidateAntiForgeryToken]
         public async Task CheckoutBasket(BasketCheckout model)
         {
             var message = new HttpRequestBuilder(_settings.BaseAddress)

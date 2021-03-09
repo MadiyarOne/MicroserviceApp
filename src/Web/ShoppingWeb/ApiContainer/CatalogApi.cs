@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ShoppingWeb.ApiContainer
 {
@@ -21,7 +22,7 @@ namespace ShoppingWeb.ApiContainer
         {
             _settings = settings;
         }
-
+        [ValidateAntiForgeryToken]
         public async Task<IEnumerable<Catalog>> GetCatalog()
         {
             var message = new HttpRequestBuilder(_settings.BaseAddress)
@@ -31,7 +32,7 @@ namespace ShoppingWeb.ApiContainer
 
             return await SendRequest<IEnumerable<Catalog>>(message);
         }
-
+        [ValidateAntiForgeryToken]
         public async Task<Catalog> GetCatalog(string id)
         {
             var message = new HttpRequestBuilder(_settings.BaseAddress)
@@ -42,7 +43,7 @@ namespace ShoppingWeb.ApiContainer
 
             return await SendRequest<Catalog>(message);
         }
-
+        [ValidateAntiForgeryToken]
         public async Task<IEnumerable<Catalog>> GetCatalogByCategory(string category)
         {
             var message = new HttpRequestBuilder(_settings.BaseAddress)
@@ -54,7 +55,7 @@ namespace ShoppingWeb.ApiContainer
 
             return await SendRequest<IEnumerable<Catalog>>(message);
         }
-
+        [ValidateAntiForgeryToken]
         public async Task<Catalog> CreateCatalog(Catalog catalogModel)
         {
             var message = new HttpRequestBuilder(_settings.BaseAddress)

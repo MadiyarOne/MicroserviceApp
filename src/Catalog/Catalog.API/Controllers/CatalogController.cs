@@ -5,6 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Catalog.API.Entities;
 using Catalog.API.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Logging;
 namespace Catalog.API.Controllers
 {
     [Route("api/v1/[controller]")]
+    [Authorize]
     [ApiController]
     public class CatalogController : ControllerBase
     {

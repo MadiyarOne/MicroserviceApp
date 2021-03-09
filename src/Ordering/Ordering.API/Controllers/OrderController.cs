@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ordering.API.DTOs;
 using Ordering.Core.Entities;
@@ -11,6 +12,7 @@ using Ordering.Core.Repositories;
 namespace Ordering.API.Controllers
 {
     [Route("api/v1/[controller]")]
+    [Authorize]
     [ApiController]
     public class OrderController : ControllerBase
     {

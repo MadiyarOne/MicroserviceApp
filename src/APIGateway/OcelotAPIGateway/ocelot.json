@@ -87,5 +87,14 @@
       "UpstreamPathTemplate": "/Order",
       "UpstreamHttpMethod": [ "Get" ]
     }
-  ]
+   
+    
+  ],
+  //AUTH
+  "UpstreamPathTemplate": ["basket", "order"],
+  "UpstreamHttpMethod": ["GET", "POST", "PUT"],
+  "AuthenticationOptions": {
+    "AuthenticationProviderKey": "IdentityApiKey",
+    "AllowedScopes": []
+  }
 }

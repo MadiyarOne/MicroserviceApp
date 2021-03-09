@@ -42,6 +42,12 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Contact">Contact</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-page="/Logout">Log out</a>
+                            </li>
+                        }
                     </ul>
 
                     <form class="form-inline my-2 my-lg-0">

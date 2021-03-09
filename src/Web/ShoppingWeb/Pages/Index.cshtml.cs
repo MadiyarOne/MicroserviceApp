@@ -26,11 +26,11 @@ namespace ShoppingWeb.Pages
             ProductList = await _catalogApi.GetCatalog();
             return Page();
         }
-
+        
         public async Task<IActionResult> OnPostAddToCartAsync(string productId)
         {
-            //if (!User.Identity.IsAuthenticated)
-            //    return RedirectToPage("./Account/Login", new { area = "Identity" });
+            /*if (!User.Identity.IsAuthenticated)
+                return RedirectToPage("./Account/Login", new { area = "Identity" });*/
 
             var product = await _catalogApi.GetCatalog(productId);
 

@@ -7,9 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ShoppingWeb.ApiContainer
 {
+    [Authorize]
     public class OrderApi : BaseHttpClientWithFactory, IOrderApi
     {
         private readonly IApiSettings _settings;
@@ -18,7 +21,7 @@ namespace ShoppingWeb.ApiContainer
         {
             _settings = settings;
         }
-
+        [ValidateAntiForgeryToken]
         public async Task<IEnumerable<OrderResponse>> GetOrdersByUsername(string username)
         {
             var message = new HttpRequestBuilder(_settings.BaseAddress)
